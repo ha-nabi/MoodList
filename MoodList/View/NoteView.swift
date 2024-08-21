@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NoteView: View {
     @ObservedObject var viewModel: MoodViewModel
-    @FocusState private var isFocused: Bool
+    
     var onRegister: () -> Void
     
     var body: some View {
@@ -17,7 +17,6 @@ struct NoteView: View {
             Button {
                 withAnimation {
                     viewModel.toggleNoteOpen()
-                    isFocused = true  // 버튼을 누르면 자동으로 TextField에 포커스
                 }
             } label: {
                 Text("무드를 작성하세요")
@@ -36,10 +35,14 @@ struct NoteView: View {
                     .background(.gray.opacity(0.3), in: .rect(cornerRadius: 8))
                     .padding()
                     .tint(viewModel.Fcolor)
-                    .focused($isFocused)
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.scrollToBottom = true
+                        }
+                    }
                 
                 Button {
-                    onRegister() // 등록 버튼 클릭 시 무드 저장 로직 호출
+                    onRegister()
                 } label: {
                     Text("등록")
                         .foregroundStyle(viewModel.getTextColor())
@@ -55,12 +58,8 @@ struct NoteView: View {
         .overlay(alignment: .topTrailing) {
             if viewModel.isNoteOpen {
                 Button {
-                    // 키보드가 내려간 후에 버튼이 줄어들도록 순서 조정
-                    isFocused = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        withAnimation {
-                            viewModel.isNoteOpen = false
-                        }
+                    withAnimation {
+                        viewModel.isNoteOpen = false
                     }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -74,12 +73,5 @@ struct NoteView: View {
         .frame(maxWidth: .infinity)
         .background(.gray.opacity(0.3), in: .rect(cornerRadius: 12))
         .clipped()
-        .onAppear {
-            if viewModel.isNoteOpen {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    isFocused = true
-                }
-            }
-        }
     }
 }

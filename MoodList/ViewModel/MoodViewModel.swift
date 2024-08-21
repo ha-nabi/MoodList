@@ -24,7 +24,6 @@ class MoodViewModel: ObservableObject {
         MoodModel(feeling: "행복해요", mood: .happy, color: .cHappy)
     ]
     
-    // 기분 선택
     func selectMood(mood: MoodModel) {
         withAnimation {
             self.selectedMood = mood.mood
@@ -33,7 +32,6 @@ class MoodViewModel: ObservableObject {
         }
     }
     
-    // 초기 상태로 리셋
     func reset() {
         self.selectedMood = .none
         self.feeling = "?"
@@ -43,7 +41,6 @@ class MoodViewModel: ObservableObject {
         self.scrollToBottom = false
     }
     
-    // 텍스트 색상 반환
     func getTextColor() -> Color {
         switch selectedMood {
         case .unhappy, .sad, .normal:
@@ -55,7 +52,6 @@ class MoodViewModel: ObservableObject {
         }
     }
     
-    // 노트 열기/닫기 토글
     func toggleNoteOpen() {
         withAnimation {
             isNoteOpen.toggle()
@@ -63,7 +59,6 @@ class MoodViewModel: ObservableObject {
         }
     }
     
-    // 무드 뷰 열기/닫기 토글
     func toggleMoodView() {
         HapticFeedbackManager.shared.triggerHapticFeedback()
         
@@ -76,7 +71,6 @@ class MoodViewModel: ObservableObject {
         }
     }
     
-    // 무드 뷰 닫기
     func closeMoodView() {
         withAnimation(.spring(response: 0.7, dampingFraction: 0.7)) {
             showMoodView = false

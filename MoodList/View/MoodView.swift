@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct MoodView: View {
-    @Namespace var animationNamespace
     @ObservedObject var viewModel: MoodViewModel
+    
+    @Namespace var animationNamespace
+    
     var onMoodRegister: () -> Void
     
     var body: some View {
@@ -66,25 +68,28 @@ struct MoodView: View {
                             onMoodRegister() // 무드 등록 로직 호출
                         })
                         .id("NoteView")
+                        .offset(y: -10)
                     }
-                    .padding()
+                    .padding(.horizontal)
                 }
-                .onChange(of: viewModel.scrollToBottom) { _, _ in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            proxy.scrollTo("NoteView", anchor: .bottom)
+                .onChange(of: viewModel.scrollToBottom) { _, newValue in
+                    if newValue {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                proxy.scrollTo("NoteView", anchor: .bottom)
+                            }
                         }
+                        viewModel.scrollToBottom = false
                     }
                 }
                 .scrollIndicators(.hidden)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var topTitle: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("오늘 하루 당신의")
+        VStack(alignment: .leading, spacing: 8) {
+            Text("지금 내가 느끼는")
             
             HStack {
                 Text("무드는")

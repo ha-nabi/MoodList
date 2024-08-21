@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD10F2C767EDA005825F1 /* MoodEntry.swift */; };
+		632BD1122C767F21005825F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1112C767F21005825F1 /* ContentView.swift */; };
 		63DF391E2C752BC1008D8EB2 /* MoodListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */; };
-		63DF39202C752BC1008D8EB2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391F2C752BC1008D8EB2 /* ContentView.swift */; };
+		63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391F2C752BC1008D8EB2 /* MainView.swift */; };
 		63DF39222C752BC2008D8EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF39212C752BC2008D8EB2 /* Assets.xcassets */; };
 		63DF39252C752BC2008D8EB2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF39242C752BC2008D8EB2 /* Preview Assets.xcassets */; };
 		63DF39302C753898008D8EB2 /* MoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF392F2C753898008D8EB2 /* MoodView.swift */; };
@@ -20,9 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		632BD10F2C767EDA005825F1 /* MoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntry.swift; sourceTree = "<group>"; };
+		632BD1112C767F21005825F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63DF391A2C752BC1008D8EB2 /* MoodList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListApp.swift; sourceTree = "<group>"; };
-		63DF391F2C752BC1008D8EB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63DF391F2C752BC1008D8EB2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		63DF39212C752BC2008D8EB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63DF39242C752BC2008D8EB2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63DF392F2C753898008D8EB2 /* MoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodView.swift; sourceTree = "<group>"; };
@@ -64,7 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */,
-				63DF391F2C752BC1008D8EB2 /* ContentView.swift */,
+				632BD1112C767F21005825F1 /* ContentView.swift */,
 				63DF392D2C75384A008D8EB2 /* ViewModel */,
 				63DF392C2C753846008D8EB2 /* Model */,
 				63DF392B2C75383E008D8EB2 /* View */,
@@ -86,9 +90,10 @@
 		63DF392B2C75383E008D8EB2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				63DF39332C7538B7008D8EB2 /* IconView.swift */,
+				63DF391F2C752BC1008D8EB2 /* MainView.swift */,
 				63DF392F2C753898008D8EB2 /* MoodView.swift */,
 				63DF39312C7538AA008D8EB2 /* NoteView.swift */,
+				63DF39332C7538B7008D8EB2 /* IconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				63DF39352C7538C7008D8EB2 /* MoodModel.swift */,
+				632BD10F2C767EDA005825F1 /* MoodEntry.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,9 +196,11 @@
 			files = (
 				63DF39362C7538C7008D8EB2 /* MoodModel.swift in Sources */,
 				63DF39342C7538B7008D8EB2 /* IconView.swift in Sources */,
-				63DF39202C752BC1008D8EB2 /* ContentView.swift in Sources */,
+				63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */,
 				63DF39302C753898008D8EB2 /* MoodView.swift in Sources */,
 				63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */,
+				632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */,
+				632BD1122C767F21005825F1 /* ContentView.swift in Sources */,
 				63DF39322C7538AA008D8EB2 /* NoteView.swift in Sources */,
 				63DF391E2C752BC1008D8EB2 /* MoodListApp.swift in Sources */,
 				63DF393E2C754CAA008D8EB2 /* HapticFeedbackManager.swift in Sources */,
