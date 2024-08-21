@@ -67,7 +67,7 @@ class MoodViewModel: ObservableObject {
     func toggleMoodView() {
         HapticFeedbackManager.shared.triggerHapticFeedback()
         
-        withAnimation(.spring(response: 0.6)) {
+        withAnimation(.spring(response: 0.7, dampingFraction: 0.7)) {
             showMoodView.toggle()
             
             if showMoodView {
@@ -78,7 +78,7 @@ class MoodViewModel: ObservableObject {
     
     // 무드 뷰 닫기
     func closeMoodView() {
-        withAnimation(.spring(response: 0.5)) {
+        withAnimation(.spring(response: 0.7, dampingFraction: 0.7)) {
             showMoodView = false
         }
     }

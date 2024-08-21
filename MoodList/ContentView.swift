@@ -52,7 +52,6 @@ struct ContentView: View {
                     Spacer()
                 }
 
-                // 월별 세그먼트 스크롤뷰
                 ScrollViewReader { proxy in
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
@@ -81,6 +80,8 @@ struct ContentView: View {
                         .padding(.horizontal, 10)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical)
+                        
+                        Divider()
                     }
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -136,6 +137,8 @@ struct ContentView: View {
                         .onDelete(perform: deleteMood)
                     }
                     .listStyle(PlainListStyle())
+                    .scrollIndicators(.hidden)
+                    .offset(y: -7)
                 }
                 Spacer()
             }
@@ -143,7 +146,7 @@ struct ContentView: View {
             .onAppear(perform: selectRandomGreeting)
             
             if viewModel.showMoodView {
-                Color.black.opacity(0.5).ignoresSafeArea()
+                Color.black.ignoresSafeArea()
                     .zIndex(1)
                 
                 MoodView(animationNamespace: _animationNamespace, viewModel: viewModel) {
@@ -161,9 +164,7 @@ struct ContentView: View {
                 .transition(.scale(scale: 0.1, anchor: .bottomTrailing).combined(with: .opacity))
             } else {
                 Button(action: {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        viewModel.toggleMoodView()
-                    }
+                    viewModel.toggleMoodView()
                 }) {
                     Image(systemName: "plus")
                         .fontWeight(.semibold)

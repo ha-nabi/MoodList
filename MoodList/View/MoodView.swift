@@ -79,6 +79,7 @@ struct MoodView: View {
                 .scrollIndicators(.hidden)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     var topTitle: some View {
