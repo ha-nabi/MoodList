@@ -29,7 +29,7 @@ struct IconView: View {
                 .frame(width: 150, height: 150)
                 .scaleEffect(FaceScale)
         }
-        .onChange(of: viewModel.selectedMood) { _ in
+        .onChange(of: viewModel.selectedMood) { _, _ in
             withAnimation {
                 FaceScale = 0
             }

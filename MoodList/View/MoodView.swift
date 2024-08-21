@@ -69,7 +69,7 @@ struct MoodView: View {
                     }
                     .padding()
                 }
-                .onChange(of: viewModel.scrollToBottom) { _ in
+                .onChange(of: viewModel.scrollToBottom) { _, _ in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         withAnimation {
                             proxy.scrollTo("NoteView", anchor: .bottom)
