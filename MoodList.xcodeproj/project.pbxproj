@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD10F2C767EDA005825F1 /* MoodEntry.swift */; };
 		632BD1122C767F21005825F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1112C767F21005825F1 /* ContentView.swift */; };
+		632BD1152C76A216005825F1 /* MoodEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1142C76A216005825F1 /* MoodEntryRow.swift */; };
+		632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1162C76AA99005825F1 /* MonthPicker.swift */; };
+		632BD1192C76AAB9005825F1 /* MoodEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1182C76AAB9005825F1 /* MoodEntryList.swift */; };
+		632BD11B2C76AACF005825F1 /* MoodActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD11A2C76AACF005825F1 /* MoodActionButton.swift */; };
+		632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD11D2C76AB79005825F1 /* TransparentBlur.swift */; };
 		63DF391E2C752BC1008D8EB2 /* MoodListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */; };
 		63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391F2C752BC1008D8EB2 /* MainView.swift */; };
 		63DF39222C752BC2008D8EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF39212C752BC2008D8EB2 /* Assets.xcassets */; };
@@ -24,6 +29,11 @@
 /* Begin PBXFileReference section */
 		632BD10F2C767EDA005825F1 /* MoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntry.swift; sourceTree = "<group>"; };
 		632BD1112C767F21005825F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		632BD1142C76A216005825F1 /* MoodEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryRow.swift; sourceTree = "<group>"; };
+		632BD1162C76AA99005825F1 /* MonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPicker.swift; sourceTree = "<group>"; };
+		632BD1182C76AAB9005825F1 /* MoodEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryList.swift; sourceTree = "<group>"; };
+		632BD11A2C76AACF005825F1 /* MoodActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodActionButton.swift; sourceTree = "<group>"; };
+		632BD11D2C76AB79005825F1 /* TransparentBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlur.swift; sourceTree = "<group>"; };
 		63DF391A2C752BC1008D8EB2 /* MoodList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListApp.swift; sourceTree = "<group>"; };
 		63DF391F2C752BC1008D8EB2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -48,6 +58,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632BD1132C76A203005825F1 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				632BD1182C76AAB9005825F1 /* MoodEntryList.swift */,
+				632BD1142C76A216005825F1 /* MoodEntryRow.swift */,
+				632BD1162C76AA99005825F1 /* MonthPicker.swift */,
+				632BD11A2C76AACF005825F1 /* MoodActionButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		63DF39112C752BC1008D8EB2 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +93,7 @@
 				63DF392D2C75384A008D8EB2 /* ViewModel */,
 				63DF392C2C753846008D8EB2 /* Model */,
 				63DF392B2C75383E008D8EB2 /* View */,
+				632BD1132C76A203005825F1 /* Component */,
 				63DF393C2C754C91008D8EB2 /* Utilities */,
 				63DF39212C752BC2008D8EB2 /* Assets.xcassets */,
 				63DF39232C752BC2008D8EB2 /* Preview Content */,
@@ -119,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */,
+				632BD11D2C76AB79005825F1 /* TransparentBlur.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -196,7 +219,12 @@
 			files = (
 				63DF39362C7538C7008D8EB2 /* MoodModel.swift in Sources */,
 				63DF39342C7538B7008D8EB2 /* IconView.swift in Sources */,
+				632BD11B2C76AACF005825F1 /* MoodActionButton.swift in Sources */,
 				63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */,
+				632BD1192C76AAB9005825F1 /* MoodEntryList.swift in Sources */,
+				632BD1152C76A216005825F1 /* MoodEntryRow.swift in Sources */,
+				632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */,
+				632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */,
 				63DF39302C753898008D8EB2 /* MoodView.swift in Sources */,
 				63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */,
 				632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */,

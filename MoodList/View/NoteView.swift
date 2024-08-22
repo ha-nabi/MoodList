@@ -32,7 +32,10 @@ struct NoteView: View {
                     .padding(10)
                     .foregroundStyle(.white)
                     .scrollContentBackground(.hidden)
-                    .background(.gray.opacity(0.3), in: .rect(cornerRadius: 8))
+                    .background(TransparentBlur(removeAllFilters: true)
+                                    .blur(radius: 20, opaque: true)
+                                    .background(Color.gray.opacity(0.15))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8)))
                     .padding()
                     .tint(viewModel.Fcolor)
                     .onTapGesture {
@@ -45,14 +48,15 @@ struct NoteView: View {
                     onRegister()
                 } label: {
                     Text("등록")
-                        .foregroundStyle(viewModel.getTextColor())
+                        .foregroundStyle(viewModel.noteText.isEmpty ? Color(.gray) : viewModel.getTextColor())
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .padding(10)
-                        .background(viewModel.Fcolor)
+                        .background(viewModel.noteText.isEmpty ? Color(.darkGray) : viewModel.Fcolor)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal)
+                .disabled(viewModel.noteText.isEmpty)
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -60,6 +64,7 @@ struct NoteView: View {
                 Button {
                     withAnimation {
                         viewModel.isNoteOpen = false
+                        viewModel.noteText = ""
                     }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -71,7 +76,16 @@ struct NoteView: View {
         }
         .frame(height: viewModel.isNoteOpen ? 200 : 55)
         .frame(maxWidth: .infinity)
-        .background(.gray.opacity(0.3), in: .rect(cornerRadius: 12))
+        .background(
+            TransparentBlur(removeAllFilters: true)
+                .blur(radius: 50, opaque: true)
+                .background(Color.gray.opacity(0.15))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        )
         .clipped()
+        .background {
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(.white.opacity(0.3), lineWidth: 1.4)
+        }
     }
 }
