@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MoodEntryRow: View {
+    @ObservedObject var viewModel: MoodViewModel
+    
     let entry: MoodEntry
-    let viewModel: MoodViewModel
 
     var body: some View {
         HStack(alignment: .center, spacing: 14) {

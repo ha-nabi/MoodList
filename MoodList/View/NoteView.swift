@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NoteView: View {
     @ObservedObject var viewModel: MoodViewModel
+    @Environment(\.modelContext) private var modelContext
     
     var onRegister: () -> Void
     
@@ -45,6 +47,13 @@ struct NoteView: View {
                     }
                 
                 Button {
+                    viewModel.addMoodEntry(
+                        modelContext: modelContext,
+                        moodImage: viewModel.selectedMood,
+                        feeling: viewModel.feeling,
+                        color: viewModel.Fcolor,
+                        note: viewModel.noteText
+                    )
                     onRegister()
                 } label: {
                     Text("등록")

@@ -9,28 +9,26 @@ import SwiftUI
 
 struct MoodView: View {
     @ObservedObject var viewModel: MoodViewModel
-    
     @Namespace var animationNamespace
-    
+
     var onMoodRegister: () -> Void
-    
+
     var body: some View {
         ScrollViewReader { proxy in
             ZStack(alignment: .bottomTrailing) {
                 Color.black.ignoresSafeArea()
-                
-                Circle().foregroundStyle(viewModel.Fcolor)
+
+                Circle()
+                    .foregroundStyle(viewModel.Fcolor)
                     .frame(width: 300, height: 300)
                     .blur(radius: 200)
                     .offset(x: 130, y: 130)
-                
+
                 ScrollView {
                     VStack(spacing: 64) {
                         HStack(alignment: .firstTextBaseline) {
                             topTitle
-                            
                             Spacer()
-                            
                             Button {
                                 viewModel.closeMoodView()
                             } label: {
@@ -40,9 +38,9 @@ struct MoodView: View {
                                     .padding(.trailing)
                             }
                         }
-                        
+
                         IconView(viewModel: viewModel)
-                        
+
                         HStack(spacing: 20) {
                             ForEach(viewModel.moods) { mood in
                                 VStack(spacing: 16) {
@@ -50,7 +48,7 @@ struct MoodView: View {
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 45, height: 45)
-                                    
+
                                     Text(mood.feeling)
                                         .foregroundStyle(.white)
                                         .font(.body)
@@ -63,10 +61,10 @@ struct MoodView: View {
                                 }
                             }
                         }
-                        
-                        NoteView(viewModel: viewModel, onRegister: {
-                            onMoodRegister() // 무드 등록 로직 호출
-                        })
+
+                        NoteView(viewModel: viewModel) {
+                            onMoodRegister()
+                        }
                         .id("NoteView")
                         .offset(y: -10)
                     }
@@ -86,14 +84,12 @@ struct MoodView: View {
             }
         }
     }
-    
+
     var topTitle: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("지금 내가 느끼는")
-            
             HStack {
                 Text("무드는")
-                
                 Text(viewModel.feeling)
                     .foregroundStyle(viewModel.Fcolor)
                     .contentTransition(.numericText())

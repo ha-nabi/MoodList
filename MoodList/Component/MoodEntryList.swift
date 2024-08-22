@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct MoodEntryList: View {
+    @ObservedObject var viewModel: MoodViewModel
+    
     let groupedEntries: [Date: [MoodEntry]]
     let formattedDateHeader: (Date) -> String
-    let viewModel: MoodViewModel
 
     var body: some View {
         List {
             ForEach(groupedEntries.keys.sorted(), id: \.self) { date in
                 Section {
                     ForEach(groupedEntries[date] ?? []) { entry in
-                        MoodEntryRow(entry: entry, viewModel: viewModel)
+                        MoodEntryRow(viewModel: viewModel, entry: entry)
                     }
                 } header: {
                     Text(formattedDateHeader(date))

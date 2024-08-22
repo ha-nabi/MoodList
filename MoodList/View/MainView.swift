@@ -11,6 +11,8 @@ struct MainView: View {
     @StateObject private var viewModel = MoodViewModel()
     
     @Namespace private var animationNamespace
+    
+    @Query private var moodEntries: [MoodEntry]
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -38,7 +40,7 @@ struct MainView: View {
 
                 Divider()
                 
-                if viewModel.filteredEntries.isEmpty {
+                if filteredEntries.isEmpty {
                     VStack {
                         Spacer()
                         Text("등록된 무드가 없습니다.")
@@ -49,7 +51,7 @@ struct MainView: View {
                         Spacer()
                     }
                 } else {
-                    MoodEntryList(groupedEntries: viewModel.groupedEntries, formattedDateHeader: viewModel.formattedDateHeader, viewModel: viewModel)
+                    MoodEntryList(viewModel: viewModel, groupedEntries: groupedEntries, formattedDateHeader: viewModel.formattedDateHeader)
                 }
             }
             .zIndex(0)
@@ -60,14 +62,6 @@ struct MainView: View {
                     .zIndex(1)
                 
                 MoodView(viewModel: viewModel, animationNamespace: _animationNamespace) {
-                    let newEntry = MoodEntry(
-                        moodImage: viewModel.selectedMood,
-                        feeling: viewModel.feeling,
-                        color: viewModel.Fcolor,
-                        note: viewModel.noteText,
-                        date: Date()
-                    )
-                    viewModel.moodEntries.append(newEntry)
                     viewModel.closeMoodView()
                 }
                 .zIndex(2)
@@ -80,8 +74,15 @@ struct MainView: View {
             }
         }
     }
-}
+    
+    var filteredEntries: [MoodEntry] {
+        moodEntries.filter { entry in
+            let month = Calendar.current.component(.month, from: entry.date)
+            return month == viewModel.selectedMonth
+        }
+    }
 
-#Preview {
-    ContentView()
+    var groupedEntries: [Date: [MoodEntry]] {
+        Dictionary(grouping: filteredEntries, by: { Calendar.current.startOfDay(for: $0.date) })
+    }
 }
