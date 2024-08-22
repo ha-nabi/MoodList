@@ -15,15 +15,21 @@ final class MoodViewModel: ObservableObject {
     @Published var noteText: String = ""
     @Published var isNoteOpen: Bool = false
     @Published var showMoodView: Bool = false
-    @Published var moodEntries: [MoodEntry] = []
+    @Published var moodEntries: [MoodEntry] = [] {
+        didSet {
+            saveMoodEntries()
+        }
+    }
     @Published var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     @Published var greetingText: String = ""
+
+    private let moodEntriesKey = "moodEntries"
 
     let moods: [MoodModel] = [
         MoodModel(feeling: "화나요", mood: .unhappy, color: .cUnhappy),
         MoodModel(feeling: "우울해요", mood: .sad, color: .cSad),
         MoodModel(feeling: "그저 그래요", mood: .normal, color: .cNormal),
-        MoodModel(feeling: "좋아요", mood: .good, color: .cGoog),
+        MoodModel(feeling: "좋아요", mood: .good, color: .cGood),
         MoodModel(feeling: "행복해요", mood: .happy, color: .cHappy)
     ]
     
@@ -38,7 +44,12 @@ final class MoodViewModel: ObservableObject {
         "하루를 마무리하며,\n오늘의 무드를 남겨보세요"
     ]
     
+    var groupedEntries: [Date: [MoodEntry]] {
+        Dictionary(grouping: moodEntries, by: { Calendar.current.startOfDay(for: $0.date) })
+    }
+    
     init() {
+        loadMoodEntries()
         selectRandomGreeting()
     }
     
@@ -65,8 +76,6 @@ final class MoodViewModel: ObservableObject {
             return .white
         case .none, .good, .happy:
             return .black
-        default:
-            return .white
         }
     }
     
@@ -106,22 +115,6 @@ final class MoodViewModel: ObservableObject {
         }
     }
 
-    var groupedEntries: [Date: [MoodEntry]] {
-        groupEntriesByDate(entries: filteredEntries)
-    }
-
-    private func groupEntriesByDate(entries: [MoodEntry]) -> [Date: [MoodEntry]] {
-        var grouped = [Date: [MoodEntry]]()
-        for entry in entries {
-            let date = Calendar.current.startOfDay(for: entry.date)
-            if grouped[date] == nil {
-                grouped[date] = []
-            }
-            grouped[date]?.append(entry)
-        }
-        return grouped
-    }
-
     func deleteMood(at offsets: IndexSet) {
         moodEntries.remove(atOffsets: offsets)
     }
@@ -142,5 +135,21 @@ final class MoodViewModel: ObservableObject {
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH시 mm분"
         return timeFormatter.string(from: date)
+    }
+
+    private func saveMoodEntries() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(moodEntries) {
+            UserDefaults.standard.set(encoded, forKey: moodEntriesKey)
+        }
+    }
+
+    private func loadMoodEntries() {
+        let decoder = JSONDecoder()
+        if let savedEntries = UserDefaults.standard.object(forKey: moodEntriesKey) as? Data {
+            if let decodedEntries = try? decoder.decode([MoodEntry].self, from: savedEntries) {
+                moodEntries = decodedEntries
+            }
+        }
     }
 }

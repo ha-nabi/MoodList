@@ -24,6 +24,7 @@
 		63DF39362C7538C7008D8EB2 /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF39352C7538C7008D8EB2 /* MoodModel.swift */; };
 		63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF39372C7538DA008D8EB2 /* MoodViewModel.swift */; };
 		63DF393E2C754CAA008D8EB2 /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */; };
+		63E1B40D2C76E15000C72614 /* ImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1B40C2C76E15000C72614 /* ImageResource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		63DF39352C7538C7008D8EB2 /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		63DF39372C7538DA008D8EB2 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
+		63E1B40C2C76E15000C72614 /* ImageResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				63DF392C2C753846008D8EB2 /* Model */,
 				63DF392B2C75383E008D8EB2 /* View */,
 				632BD1132C76A203005825F1 /* Component */,
+				63E1B40B2C76E13300C72614 /* Enum */,
 				63DF393C2C754C91008D8EB2 /* Utilities */,
 				63DF39212C752BC2008D8EB2 /* Assets.xcassets */,
 				63DF39232C752BC2008D8EB2 /* Preview Content */,
@@ -144,6 +147,14 @@
 				632BD11D2C76AB79005825F1 /* TransparentBlur.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		63E1B40B2C76E13300C72614 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				63E1B40C2C76E15000C72614 /* ImageResource.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 				632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */,
 				632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */,
 				63DF39302C753898008D8EB2 /* MoodView.swift in Sources */,
+				63E1B40D2C76E15000C72614 /* ImageResource.swift in Sources */,
 				63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */,
 				632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */,
 				632BD1122C767F21005825F1 /* ContentView.swift in Sources */,

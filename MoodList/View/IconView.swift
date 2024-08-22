@@ -25,7 +25,7 @@ struct IconView: View {
                 .opacity(scale ? 0 : 1)
                 .scaleEffect(scale ? 1 : 0.2)
             
-            Image(viewModel.selectedMood)
+            Image(viewModel.selectedMood.rawValue)
                 .resizable().scaledToFill()
                 .frame(width: 150, height: 150)
                 .scaleEffect(FaceScale)

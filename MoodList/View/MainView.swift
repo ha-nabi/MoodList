@@ -21,7 +21,7 @@ struct MainView: View {
             )
             .ignoresSafeArea()
             
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     Text(viewModel.greetingText)
                         .font(.title2)
@@ -29,7 +29,7 @@ struct MainView: View {
                         .lineLimit(2)
                         .lineSpacing(8)
                         .foregroundStyle(.white)
-                        .padding(20)
+                        .padding()
                     
                     Spacer()
                 }
@@ -37,7 +37,6 @@ struct MainView: View {
                 MonthPicker(selectedMonth: $viewModel.selectedMonth, animationNamespace: animationNamespace)
 
                 Divider()
-                    .offset(y: 7)
                 
                 if viewModel.filteredEntries.isEmpty {
                     VStack {

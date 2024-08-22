@@ -15,22 +15,23 @@ struct MoodEntryList: View {
     var body: some View {
         List {
             ForEach(groupedEntries.keys.sorted(), id: \.self) { date in
-                Section(header: Text(formattedDateHeader(date))
-                            .foregroundStyle(.white)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding(.bottom, 4)
-                ) {
+                Section {
                     ForEach(groupedEntries[date] ?? []) { entry in
                         MoodEntryRow(entry: entry, viewModel: viewModel)
                     }
+                } header: {
+                    Text(formattedDateHeader(date))
+                        .foregroundStyle(.white)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 4)
+                    
                 }
-                .listSectionSeparator(.hidden)
                 .listRowBackground(Color.clear)
             }
+            .listRowSeparator(.hidden)
         }
-        .listStyle(PlainListStyle())
+        .listStyle(.plain)
         .scrollContentBackground(.hidden)
-        .scrollIndicators(.hidden)
     }
 }

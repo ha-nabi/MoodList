@@ -46,7 +46,7 @@ struct MoodView: View {
                         HStack(spacing: 20) {
                             ForEach(viewModel.moods) { mood in
                                 VStack(spacing: 16) {
-                                    Image(mood.mood)
+                                    Image(mood.mood.rawValue)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 45, height: 45)
