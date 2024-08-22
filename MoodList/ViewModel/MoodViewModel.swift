@@ -18,26 +18,17 @@ final class MoodViewModel: ObservableObject {
     @Published var showMoodView: Bool = false
     @Published var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     @Published var greetingText: String = ""
-
-    let moods: [MoodModel] = [
-        MoodModel(feeling: "화나요", mood: .unhappy, color: .cUnhappy),
-        MoodModel(feeling: "우울해요", mood: .sad, color: .cSad),
-        MoodModel(feeling: "그저 그래요", mood: .normal, color: .cNormal),
-        MoodModel(feeling: "좋아요", mood: .good, color: .cGood),
-        MoodModel(feeling: "행복해요", mood: .happy, color: .cHappy)
+    @Published var showingErrorAlert: Bool = false
+    @Published var errorMessage: String = ""
+    
+    @Published private(set) var moods: [MoodModel] = [
+        MoodModel(feeling: AppLocalized.feelingAngry, mood: .unhappy, color: .cUnhappy),
+        MoodModel(feeling: AppLocalized.feelingSad, mood: .sad, color: .cSad),
+        MoodModel(feeling: AppLocalized.feelingNomal, mood: .normal, color: .cNormal),
+        MoodModel(feeling: AppLocalized.feelingGood, mood: .good, color: .cGood),
+        MoodModel(feeling: AppLocalized.feelingHappy, mood: .happy, color: .cHappy)
     ]
-
-    private let greetings = [
-        "환영해요!\n오늘 당신의 무드를 여기 남겨보세요",
-        "하루의 무드를 기록하는 순간,\n당신의 이야기를 들려주세요",
-        "오늘의 무드는 어떤 색 인가요?\n같이 기록해요",
-        "하루의 끝,\n당신의 무드를 이야기해 주세요",
-        "지금 이 순간의 무드는 어떤가요?\n함께 기록해 봐요",
-        "당신의 이야기를 들려주세요.\n무드를 기록할 준비가 되었나요?",
-        "오늘 하루,\n당신의 무드는 어떤 색인가요?",
-        "하루를 마무리하며,\n오늘의 무드를 남겨보세요"
-    ]
-
+    
     init() {
         selectRandomGreeting()
     }
@@ -92,7 +83,7 @@ final class MoodViewModel: ObservableObject {
     }
 
     func selectRandomGreeting() {
-        greetingText = greetings.randomElement() ?? "환영합니다!"
+        greetingText = AppLocalized.welcomeMessages.randomElement() ?? AppLocalized.welcomeMessages.first!
     }
 
     func deleteMood(entry: MoodEntry) {
@@ -101,25 +92,42 @@ final class MoodViewModel: ObservableObject {
             try? context.save()
         }
     }
-
+    
     func addMoodEntry(modelContext: ModelContext, moodImage: ImageResource, feeling: String, color: Color, note: String) {
         let newEntry = MoodEntry(moodImage: moodImage, feeling: feeling, color: color, note: note, date: Date())
         modelContext.insert(newEntry)
         do {
             try modelContext.save()
         } catch {
+            print("Failed to save MoodEntry: \(error.localizedDescription)")
+            
+            errorMessage = AppLocalized.errorAlertText
+            showingErrorAlert = true
         }
     }
 
     func formattedDateHeader(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M월 d일"
+        dateFormatter.dateFormat = AppLocalized.dateFormat
         return dateFormatter.string(from: date)
     }
 
     func formattedTime(_ date: Date) -> String {
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH시 mm분"
+        timeFormatter.dateFormat = AppLocalized.timeFormat
         return timeFormatter.string(from: date)
+    }
+}
+
+extension MoodViewModel {
+    func filteredEntries(_ entries: [MoodEntry]) -> [MoodEntry] {
+        entries.filter { entry in
+            let month = Calendar.current.component(.month, from: entry.date)
+            return month == selectedMonth
+        }
+    }
+
+    func groupedEntries(_ entries: [MoodEntry]) -> [Date: [MoodEntry]] {
+        Dictionary(grouping: filteredEntries(entries), by: { Calendar.current.startOfDay(for: $0.date) })
     }
 }

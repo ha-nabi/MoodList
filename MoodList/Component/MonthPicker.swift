@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MonthPicker: View {
     @Binding var selectedMonth: Int
+    
     let animationNamespace: Namespace.ID
 
     var body: some View {
@@ -21,20 +22,20 @@ struct MonthPicker: View {
                             .fontWeight(.medium)
                             .padding(.vertical, 12)
                             .padding(.horizontal, 22)
-                            .background(
+                            .background {
                                 ZStack {
                                     TransparentBlur(removeAllFilters: true)
                                         .blur(radius: 9, opaque: true)
                                         .background(Color.gray.opacity(0.15))
                                         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-
+                                    
                                     if selectedMonth == month {
                                         TransparentBlur(removeAllFilters: false)
                                             .background(Color.cSad.opacity(0.9))
                                             .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
                                     }
                                 }
-                            )
+                            }
                             .overlay(
                                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                                     .stroke(Color.white.opacity(0.3), lineWidth: 0.4)

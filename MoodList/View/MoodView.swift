@@ -87,9 +87,9 @@ struct MoodView: View {
 
     var topTitle: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("지금 내가 느끼는")
+            Text(AppLocalized.moodFirstText)
             HStack {
-                Text("무드는")
+                Text(AppLocalized.moodSecondText)
                 Text(viewModel.feeling)
                     .foregroundStyle(viewModel.Fcolor)
                     .contentTransition(.numericText())

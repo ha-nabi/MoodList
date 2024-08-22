@@ -21,7 +21,7 @@ struct NoteView: View {
                     viewModel.toggleNoteOpen()
                 }
             } label: {
-                Text("무드를 작성하세요")
+                Text(AppLocalized.writeMoodText)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
@@ -30,14 +30,14 @@ struct NoteView: View {
             }
             
             if viewModel.isNoteOpen {
-                TextField("오늘 당신의 무드는 어땠나요?", text: $viewModel.noteText)
+                TextField(AppLocalized.moodNotePlaceholder, text: $viewModel.noteText)
                     .padding(10)
                     .foregroundStyle(.white)
                     .scrollContentBackground(.hidden)
                     .background(TransparentBlur(removeAllFilters: true)
-                                    .blur(radius: 20, opaque: true)
-                                    .background(Color.gray.opacity(0.15))
-                                    .clipShape(RoundedRectangle(cornerRadius: 8)))
+                        .blur(radius: 20, opaque: true)
+                        .background(Color.gray.opacity(0.15))
+                        .clipShape(RoundedRectangle(cornerRadius: 8)))
                     .padding()
                     .tint(viewModel.Fcolor)
                     .onTapGesture {
@@ -56,7 +56,7 @@ struct NoteView: View {
                     )
                     onRegister()
                 } label: {
-                    Text("등록")
+                    Text(AppLocalized.registerButtonText)
                         .foregroundStyle(viewModel.noteText.isEmpty ? Color(.gray) : viewModel.getTextColor())
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)

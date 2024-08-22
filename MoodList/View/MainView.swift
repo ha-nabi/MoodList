@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
     @StateObject private var viewModel = MoodViewModel()
-    
     @Namespace private var animationNamespace
     
     @Query private var moodEntries: [MoodEntry]
@@ -40,10 +40,10 @@ struct MainView: View {
 
                 Divider()
                 
-                if filteredEntries.isEmpty {
+                if viewModel.filteredEntries(moodEntries).isEmpty {
                     VStack {
                         Spacer()
-                        Text("등록된 무드가 없습니다.")
+                        Text(AppLocalized.noMoodEntriesText)
                             .font(.headline)
                             .fontWeight(.medium)
                             .foregroundStyle(.white)
@@ -51,7 +51,7 @@ struct MainView: View {
                         Spacer()
                     }
                 } else {
-                    MoodEntryList(viewModel: viewModel, groupedEntries: groupedEntries, formattedDateHeader: viewModel.formattedDateHeader)
+                    MoodEntryList(viewModel: viewModel, groupedEntries: viewModel.groupedEntries(moodEntries), formattedDateHeader: viewModel.formattedDateHeader)
                 }
             }
             .zIndex(0)
@@ -73,16 +73,5 @@ struct MainView: View {
                 .zIndex(3)
             }
         }
-    }
-    
-    var filteredEntries: [MoodEntry] {
-        moodEntries.filter { entry in
-            let month = Calendar.current.component(.month, from: entry.date)
-            return month == viewModel.selectedMonth
-        }
-    }
-
-    var groupedEntries: [Date: [MoodEntry]] {
-        Dictionary(grouping: filteredEntries, by: { Calendar.current.startOfDay(for: $0.date) })
     }
 }

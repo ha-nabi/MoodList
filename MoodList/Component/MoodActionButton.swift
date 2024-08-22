@@ -11,9 +11,9 @@ struct MoodActionButton: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: {
+        Button {
             action()
-        }) {
+        } label: {
             Image(systemName: "plus")
                 .fontWeight(.semibold)
                 .foregroundStyle(.white)
