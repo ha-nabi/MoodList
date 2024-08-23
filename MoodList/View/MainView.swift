@@ -36,7 +36,10 @@ struct MainView: View {
                     Spacer()
                 }
 
-                MonthPicker(selectedMonth: $viewModel.selectedMonth, animationNamespace: animationNamespace)
+                MonthPicker(
+                    selectedMonth: $viewModel.selectedMonth,
+                    animationNamespace: animationNamespace
+                )
 
                 Divider()
                 
@@ -51,17 +54,26 @@ struct MainView: View {
                         Spacer()
                     }
                 } else {
-                    MoodEntryList(viewModel: viewModel, groupedEntries: viewModel.groupedEntries(moodEntries), formattedDateHeader: viewModel.formattedDateHeader)
+                    MoodEntryList(
+                        viewModel: viewModel,
+                        groupedEntries: viewModel.groupedEntries(moodEntries),
+                        formattedDateHeader: viewModel.formattedDateHeader
+                    )
                 }
             }
             .zIndex(0)
-            .onAppear(perform: viewModel.selectRandomGreeting)
+            .onAppear {
+                viewModel.selectRandomGreeting()
+            }
             
             if viewModel.showMoodView {
                 Color.black.ignoresSafeArea()
                     .zIndex(1)
                 
-                MoodView(viewModel: viewModel, animationNamespace: _animationNamespace) {
+                MoodView(
+                    viewModel: viewModel,
+                    animationNamespace: _animationNamespace
+                ) {
                     viewModel.closeMoodView()
                 }
                 .zIndex(2)

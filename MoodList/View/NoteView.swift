@@ -30,7 +30,8 @@ struct NoteView: View {
             }
             
             if viewModel.isNoteOpen {
-                TextField(AppLocalized.moodNotePlaceholder, text: $viewModel.noteText)
+                TextField(AppLocalized.moodNotePlaceholder, 
+                          text: $viewModel.noteText)
                     .padding(10)
                     .foregroundStyle(.white)
                     .scrollContentBackground(.hidden)

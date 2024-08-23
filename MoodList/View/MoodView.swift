@@ -39,7 +39,9 @@ struct MoodView: View {
                             }
                         }
 
-                        IconView(viewModel: viewModel)
+                        IconView(
+                            viewModel: viewModel
+                        )
 
                         HStack(spacing: 20) {
                             ForEach(viewModel.moods) { mood in
@@ -62,7 +64,9 @@ struct MoodView: View {
                             }
                         }
 
-                        NoteView(viewModel: viewModel) {
+                        NoteView(
+                            viewModel: viewModel
+                        ) {
                             onMoodRegister()
                         }
                         .id("NoteView")

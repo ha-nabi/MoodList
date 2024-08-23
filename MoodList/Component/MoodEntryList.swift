@@ -26,7 +26,6 @@ struct MoodEntryList: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .padding(.bottom, 4)
-                    
                 }
                 .listRowBackground(Color.clear)
             }
