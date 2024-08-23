@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct MoodView: View {
-    @Namespace var animationNamespace
     @ObservedObject var viewModel: MoodViewModel
+    @Namespace var animationNamespace
+
     var onMoodRegister: () -> Void
-    
+
     var body: some View {
         ScrollViewReader { proxy in
             ZStack(alignment: .bottomTrailing) {
                 Color.black.ignoresSafeArea()
-                
-                Circle().foregroundStyle(viewModel.Fcolor)
+
+                Circle()
+                    .foregroundStyle(viewModel.Fcolor)
                     .frame(width: 300, height: 300)
                     .blur(radius: 200)
                     .offset(x: 130, y: 130)
-                
+
                 ScrollView {
                     VStack(spacing: 64) {
                         HStack(alignment: .firstTextBaseline) {
                             topTitle
-                            
                             Spacer()
-                            
                             Button {
                                 viewModel.closeMoodView()
                             } label: {
@@ -38,17 +38,19 @@ struct MoodView: View {
                                     .padding(.trailing)
                             }
                         }
-                        
-                        IconView(viewModel: viewModel)
-                        
+
+                        IconView(
+                            viewModel: viewModel
+                        )
+
                         HStack(spacing: 20) {
                             ForEach(viewModel.moods) { mood in
                                 VStack(spacing: 16) {
-                                    Image(mood.mood)
+                                    Image(mood.mood.rawValue)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 45, height: 45)
-                                    
+
                                     Text(mood.feeling)
                                         .foregroundStyle(.white)
                                         .font(.body)
@@ -61,33 +63,37 @@ struct MoodView: View {
                                 }
                             }
                         }
-                        
-                        NoteView(viewModel: viewModel, onRegister: {
-                            onMoodRegister() // 무드 등록 로직 호출
-                        })
-                        .id("NoteView")
-                    }
-                    .padding()
-                }
-                .onChange(of: viewModel.scrollToBottom) { _ in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            proxy.scrollTo("NoteView", anchor: .bottom)
+
+                        NoteView(
+                            viewModel: viewModel
+                        ) {
+                            onMoodRegister()
                         }
+                        .id("NoteView")
+                        .offset(y: -10)
+                    }
+                    .padding(.horizontal)
+                }
+                .onChange(of: viewModel.scrollToBottom) { _, newValue in
+                    if newValue {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                proxy.scrollTo("NoteView", anchor: .bottom)
+                            }
+                        }
+                        viewModel.scrollToBottom = false
                     }
                 }
                 .scrollIndicators(.hidden)
             }
         }
     }
-    
+
     var topTitle: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("오늘 하루 당신의")
-            
+        VStack(alignment: .leading, spacing: 8) {
+            Text(AppLocalized.moodFirstText)
             HStack {
-                Text("무드는")
-                
+                Text(AppLocalized.moodSecondText)
                 Text(viewModel.feeling)
                     .foregroundStyle(viewModel.Fcolor)
                     .contentTransition(.numericText())

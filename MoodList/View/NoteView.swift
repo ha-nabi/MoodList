@@ -6,45 +6,67 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NoteView: View {
     @ObservedObject var viewModel: MoodViewModel
+    @Environment(\.modelContext) private var modelContext
+    
     var onRegister: () -> Void
     
     var body: some View {
         VStack {
             Button {
-                viewModel.toggleNoteOpen()
+                withAnimation {
+                    viewModel.toggleNoteOpen()
+                }
             } label: {
-                Text("무드를 작성하세요")
+                Text(AppLocalized.writeMoodText)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
-                    .padding()
+                    .padding(viewModel.isNoteOpen ? [.top, .leading] : .all)
                     .frame(maxWidth: .infinity, alignment: viewModel.isNoteOpen ? .topLeading : .center)
             }
             
             if viewModel.isNoteOpen {
-                TextField("오늘 당신의 무드는 어땠나요?", text: $viewModel.noteText)
+                TextField(AppLocalized.moodNotePlaceholder, 
+                          text: $viewModel.noteText)
                     .padding(10)
                     .foregroundStyle(.white)
                     .scrollContentBackground(.hidden)
-                    .background(.gray.opacity(0.3), in: .rect(cornerRadius: 8))
+                    .background(TransparentBlur(removeAllFilters: true)
+                        .blur(radius: 20, opaque: true)
+                        .background(Color.gray.opacity(0.15))
+                        .clipShape(RoundedRectangle(cornerRadius: 8)))
                     .padding()
                     .tint(viewModel.Fcolor)
+                    .onTapGesture {
+                        withAnimation {
+                            viewModel.scrollToBottom = true
+                        }
+                    }
                 
                 Button {
-                    onRegister() // 등록 버튼 클릭 시 무드 저장 로직 호출
+                    viewModel.addMoodEntry(
+                        modelContext: modelContext,
+                        moodImage: viewModel.selectedMood,
+                        feeling: viewModel.feeling,
+                        color: viewModel.Fcolor,
+                        note: viewModel.noteText
+                    )
+                    onRegister()
                 } label: {
-                    Text("등록")
-                        .foregroundStyle(viewModel.getTextColor())
+                    Text(AppLocalized.registerButtonText)
+                        .foregroundStyle(viewModel.noteText.isEmpty ? Color(.gray) : viewModel.getTextColor())
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                        .background(viewModel.Fcolor)
+                        .padding(10)
+                        .background(viewModel.noteText.isEmpty ? Color(.darkGray) : viewModel.Fcolor)
                         .cornerRadius(8)
                 }
                 .padding(.horizontal)
+                .disabled(viewModel.noteText.isEmpty)
             }
         }
         .overlay(alignment: .topTrailing) {
@@ -52,6 +74,7 @@ struct NoteView: View {
                 Button {
                     withAnimation {
                         viewModel.isNoteOpen = false
+                        viewModel.noteText = ""
                     }
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -63,7 +86,16 @@ struct NoteView: View {
         }
         .frame(height: viewModel.isNoteOpen ? 200 : 55)
         .frame(maxWidth: .infinity)
-        .background(.gray.opacity(0.3), in: .rect(cornerRadius: 12))
+        .background(
+            TransparentBlur(removeAllFilters: true)
+                .blur(radius: 50, opaque: true)
+                .background(Color.gray.opacity(0.15))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        )
         .clipped()
+        .background {
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(.white.opacity(0.3), lineWidth: 1.4)
+        }
     }
 }

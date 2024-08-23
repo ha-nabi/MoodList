@@ -11,7 +11,7 @@ public final class HapticFeedbackManager {
     
     public static let shared = HapticFeedbackManager()
 
-    public let generator = UIImpactFeedbackGenerator(style: .soft)
+    public let generator = UIImpactFeedbackGenerator(style: .light)
     
     public init() {
         generator.prepare()

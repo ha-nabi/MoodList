@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD10F2C767EDA005825F1 /* MoodEntry.swift */; };
+		632BD1122C767F21005825F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1112C767F21005825F1 /* ContentView.swift */; };
+		632BD1152C76A216005825F1 /* MoodEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1142C76A216005825F1 /* MoodEntryRow.swift */; };
+		632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1162C76AA99005825F1 /* MonthPicker.swift */; };
+		632BD1192C76AAB9005825F1 /* MoodEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD1182C76AAB9005825F1 /* MoodEntryList.swift */; };
+		632BD11B2C76AACF005825F1 /* MoodActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD11A2C76AACF005825F1 /* MoodActionButton.swift */; };
+		632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632BD11D2C76AB79005825F1 /* TransparentBlur.swift */; };
 		63DF391E2C752BC1008D8EB2 /* MoodListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */; };
-		63DF39202C752BC1008D8EB2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391F2C752BC1008D8EB2 /* ContentView.swift */; };
+		63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF391F2C752BC1008D8EB2 /* MainView.swift */; };
 		63DF39222C752BC2008D8EB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF39212C752BC2008D8EB2 /* Assets.xcassets */; };
 		63DF39252C752BC2008D8EB2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF39242C752BC2008D8EB2 /* Preview Assets.xcassets */; };
 		63DF39302C753898008D8EB2 /* MoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF392F2C753898008D8EB2 /* MoodView.swift */; };
@@ -17,12 +24,21 @@
 		63DF39362C7538C7008D8EB2 /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF39352C7538C7008D8EB2 /* MoodModel.swift */; };
 		63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF39372C7538DA008D8EB2 /* MoodViewModel.swift */; };
 		63DF393E2C754CAA008D8EB2 /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */; };
+		63E1B40F2C77B9AE00C72614 /* ImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1B40E2C77B9AE00C72614 /* ImageResource.swift */; };
+		63E1B4122C77BD1A00C72614 /* AppLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1B4112C77BD1A00C72614 /* AppLocalized.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		632BD10F2C767EDA005825F1 /* MoodEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntry.swift; sourceTree = "<group>"; };
+		632BD1112C767F21005825F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		632BD1142C76A216005825F1 /* MoodEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryRow.swift; sourceTree = "<group>"; };
+		632BD1162C76AA99005825F1 /* MonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthPicker.swift; sourceTree = "<group>"; };
+		632BD1182C76AAB9005825F1 /* MoodEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEntryList.swift; sourceTree = "<group>"; };
+		632BD11A2C76AACF005825F1 /* MoodActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodActionButton.swift; sourceTree = "<group>"; };
+		632BD11D2C76AB79005825F1 /* TransparentBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlur.swift; sourceTree = "<group>"; };
 		63DF391A2C752BC1008D8EB2 /* MoodList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoodList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListApp.swift; sourceTree = "<group>"; };
-		63DF391F2C752BC1008D8EB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63DF391F2C752BC1008D8EB2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		63DF39212C752BC2008D8EB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63DF39242C752BC2008D8EB2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63DF392F2C753898008D8EB2 /* MoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodView.swift; sourceTree = "<group>"; };
@@ -31,6 +47,8 @@
 		63DF39352C7538C7008D8EB2 /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		63DF39372C7538DA008D8EB2 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
+		63E1B40E2C77B9AE00C72614 /* ImageResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResource.swift; sourceTree = "<group>"; };
+		63E1B4112C77BD1A00C72614 /* AppLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalized.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +62,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632BD1132C76A203005825F1 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				632BD1182C76AAB9005825F1 /* MoodEntryList.swift */,
+				632BD1142C76A216005825F1 /* MoodEntryRow.swift */,
+				632BD1162C76AA99005825F1 /* MonthPicker.swift */,
+				632BD11A2C76AACF005825F1 /* MoodActionButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		63DF39112C752BC1008D8EB2 = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +93,12 @@
 			isa = PBXGroup;
 			children = (
 				63DF391D2C752BC1008D8EB2 /* MoodListApp.swift */,
-				63DF391F2C752BC1008D8EB2 /* ContentView.swift */,
+				632BD1112C767F21005825F1 /* ContentView.swift */,
 				63DF392D2C75384A008D8EB2 /* ViewModel */,
 				63DF392C2C753846008D8EB2 /* Model */,
 				63DF392B2C75383E008D8EB2 /* View */,
+				632BD1132C76A203005825F1 /* Component */,
+				63E1B4102C77BBEA00C72614 /* Common */,
 				63DF393C2C754C91008D8EB2 /* Utilities */,
 				63DF39212C752BC2008D8EB2 /* Assets.xcassets */,
 				63DF39232C752BC2008D8EB2 /* Preview Content */,
@@ -86,9 +117,10 @@
 		63DF392B2C75383E008D8EB2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				63DF39332C7538B7008D8EB2 /* IconView.swift */,
+				63DF391F2C752BC1008D8EB2 /* MainView.swift */,
 				63DF392F2C753898008D8EB2 /* MoodView.swift */,
 				63DF39312C7538AA008D8EB2 /* NoteView.swift */,
+				63DF39332C7538B7008D8EB2 /* IconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				63DF39352C7538C7008D8EB2 /* MoodModel.swift */,
+				632BD10F2C767EDA005825F1 /* MoodEntry.swift */,
+				63E1B40E2C77B9AE00C72614 /* ImageResource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,8 +147,17 @@
 			isa = PBXGroup;
 			children = (
 				63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */,
+				632BD11D2C76AB79005825F1 /* TransparentBlur.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		63E1B4102C77BBEA00C72614 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				63E1B4112C77BD1A00C72614 /* AppLocalized.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,9 +233,18 @@
 			files = (
 				63DF39362C7538C7008D8EB2 /* MoodModel.swift in Sources */,
 				63DF39342C7538B7008D8EB2 /* IconView.swift in Sources */,
-				63DF39202C752BC1008D8EB2 /* ContentView.swift in Sources */,
+				632BD11B2C76AACF005825F1 /* MoodActionButton.swift in Sources */,
+				63DF39202C752BC1008D8EB2 /* MainView.swift in Sources */,
+				632BD1192C76AAB9005825F1 /* MoodEntryList.swift in Sources */,
+				632BD1152C76A216005825F1 /* MoodEntryRow.swift in Sources */,
+				632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */,
+				632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */,
+				63E1B4122C77BD1A00C72614 /* AppLocalized.swift in Sources */,
 				63DF39302C753898008D8EB2 /* MoodView.swift in Sources */,
+				63E1B40F2C77B9AE00C72614 /* ImageResource.swift in Sources */,
 				63DF39382C7538DA008D8EB2 /* MoodViewModel.swift in Sources */,
+				632BD1102C767EDA005825F1 /* MoodEntry.swift in Sources */,
+				632BD1122C767F21005825F1 /* ContentView.swift in Sources */,
 				63DF39322C7538AA008D8EB2 /* NoteView.swift in Sources */,
 				63DF391E2C752BC1008D8EB2 /* MoodListApp.swift in Sources */,
 				63DF393E2C754CAA008D8EB2 /* HapticFeedbackManager.swift in Sources */,
@@ -338,12 +390,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ciu.MoodList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -369,12 +421,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ciu.MoodList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

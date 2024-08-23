@@ -9,6 +9,7 @@ import SwiftUI
 
 struct IconView: View {
     @ObservedObject var viewModel: MoodViewModel
+    
     @State private var scale = false
     @State private var FaceScale: CGFloat = 1
     
@@ -24,12 +25,12 @@ struct IconView: View {
                 .opacity(scale ? 0 : 1)
                 .scaleEffect(scale ? 1 : 0.2)
             
-            Image(viewModel.selectedMood)
+            Image(viewModel.selectedMood.rawValue)
                 .resizable().scaledToFill()
                 .frame(width: 150, height: 150)
                 .scaleEffect(FaceScale)
         }
-        .onChange(of: viewModel.selectedMood) { _ in
+        .onChange(of: viewModel.selectedMood) { _, _ in
             withAnimation {
                 FaceScale = 0
             }

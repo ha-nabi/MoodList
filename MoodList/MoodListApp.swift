@@ -13,5 +13,6 @@ struct MoodListApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: MoodEntry.self)
     }
 }
