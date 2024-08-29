@@ -11,7 +11,7 @@ import SwiftData
 struct MainView: View {
     @StateObject private var viewModel = MoodViewModel()
     @Namespace private var animationNamespace
-    
+
     @Query private var moodEntries: [MoodEntry]
 
     var body: some View {
@@ -22,7 +22,7 @@ struct MainView: View {
                 endPoint: .top
             )
             .ignoresSafeArea()
-            
+
             VStack(spacing: 0) {
                 HStack {
                     Text(viewModel.greetingText)
@@ -32,7 +32,7 @@ struct MainView: View {
                         .lineSpacing(8)
                         .foregroundStyle(.white)
                         .padding()
-                    
+
                     Spacer()
                 }
 
@@ -42,8 +42,8 @@ struct MainView: View {
                 )
 
                 Divider()
-                
-                if viewModel.filteredEntries(moodEntries).isEmpty {
+
+                if viewModel.filteredMoodEntries.isEmpty {
                     VStack {
                         Spacer()
                         Text(AppLocalized.noMoodEntriesText)
@@ -57,11 +57,11 @@ struct MainView: View {
                     ScrollViewReader { proxy in
                         MoodEntryList(
                             viewModel: viewModel,
-                            groupedEntries: viewModel.groupedEntries(moodEntries),
+                            groupedEntries: viewModel.groupedMoodEntries(viewModel.filteredMoodEntries),
                             formattedDateHeader: viewModel.formattedDateHeader
                         )
                         .onAppear {
-                            if let lastDate = viewModel.groupedEntries(moodEntries).keys.sorted().last {
+                            if let lastDate = viewModel.groupedMoodEntries(viewModel.filteredMoodEntries).keys.sorted().last {
                                 proxy.scrollTo(lastDate, anchor: .bottom)
                             }
                         }
@@ -71,12 +71,13 @@ struct MainView: View {
             .zIndex(0)
             .onAppear {
                 viewModel.selectRandomGreeting()
+                viewModel.updateMoodEntries(moodEntries)
             }
-            
+
             if viewModel.showMoodView {
                 Color.black.ignoresSafeArea()
                     .zIndex(1)
-                
+
                 MoodView(
                     viewModel: viewModel,
                     animationNamespace: _animationNamespace

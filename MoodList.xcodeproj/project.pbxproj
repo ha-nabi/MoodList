@@ -26,6 +26,7 @@
 		63DF393E2C754CAA008D8EB2 /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */; };
 		63E1B40F2C77B9AE00C72614 /* ImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1B40E2C77B9AE00C72614 /* ImageResource.swift */; };
 		63E1B4122C77BD1A00C72614 /* AppLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1B4112C77BD1A00C72614 /* AppLocalized.swift */; };
+		63F5B2AF2C80AD0C00DF364B /* MoodFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5B2AE2C80AD0C00DF364B /* MoodFilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		63DF393D2C754CAA008D8EB2 /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
 		63E1B40E2C77B9AE00C72614 /* ImageResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResource.swift; sourceTree = "<group>"; };
 		63E1B4112C77BD1A00C72614 /* AppLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalized.swift; sourceTree = "<group>"; };
+		63F5B2AE2C80AD0C00DF364B /* MoodFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodFilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				63DF392F2C753898008D8EB2 /* MoodView.swift */,
 				63DF39312C7538AA008D8EB2 /* NoteView.swift */,
 				63DF39332C7538B7008D8EB2 /* IconView.swift */,
+				63F5B2AE2C80AD0C00DF364B /* MoodFilterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				632BD1192C76AAB9005825F1 /* MoodEntryList.swift in Sources */,
 				632BD1152C76A216005825F1 /* MoodEntryRow.swift in Sources */,
 				632BD11E2C76AB79005825F1 /* TransparentBlur.swift in Sources */,
+				63F5B2AF2C80AD0C00DF364B /* MoodFilterView.swift in Sources */,
 				632BD1172C76AA99005825F1 /* MonthPicker.swift in Sources */,
 				63E1B4122C77BD1A00C72614 /* AppLocalized.swift in Sources */,
 				63DF39302C753898008D8EB2 /* MoodView.swift in Sources */,
