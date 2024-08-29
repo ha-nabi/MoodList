@@ -54,11 +54,18 @@ struct MainView: View {
                         Spacer()
                     }
                 } else {
-                    MoodEntryList(
-                        viewModel: viewModel,
-                        groupedEntries: viewModel.groupedEntries(moodEntries),
-                        formattedDateHeader: viewModel.formattedDateHeader
-                    )
+                    ScrollViewReader { proxy in
+                        MoodEntryList(
+                            viewModel: viewModel,
+                            groupedEntries: viewModel.groupedEntries(moodEntries),
+                            formattedDateHeader: viewModel.formattedDateHeader
+                        )
+                        .onAppear {
+                            if let lastDate = viewModel.groupedEntries(moodEntries).keys.sorted().last {
+                                proxy.scrollTo(lastDate, anchor: .bottom)
+                            }
+                        }
+                    }
                 }
             }
             .zIndex(0)
