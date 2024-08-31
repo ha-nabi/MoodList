@@ -12,7 +12,7 @@ struct MoodFilterView: View {
     let moodEntries: [MoodEntry]
 
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 32) {
             ForEach(viewModel.moods, id: \.id) { mood in
                 let count = moodEntries.filter { $0.moodImage == mood.mood.rawValue }.count
                 HStack(spacing: 8) {
@@ -30,7 +30,8 @@ struct MoodFilterView: View {
                     }
                     
                     Text("\(count)")
-                        .font(.caption)
+                        .font(.callout)
+                        .fontWeight(.medium)
                         .foregroundStyle(.white)
                 }
             }
