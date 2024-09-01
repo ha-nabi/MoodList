@@ -52,31 +52,37 @@ struct MainView: View {
                         
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                            .scaleEffect(1.5)
+                            .scaleEffect(1)
                             .padding()
                         
                         Spacer()
                     }
-                } else if viewModel.filteredMoodEntries.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text(AppLocalized.noMoodEntriesText)
-                            .font(.headline)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.white)
-                            .padding()
-                        Spacer()
-                    }
                 } else {
-                    ScrollViewReader { proxy in
-                        MoodEntryList(
-                            viewModel: viewModel,
-                            groupedEntries: viewModel.groupedMoodEntries(viewModel.filteredMoodEntries),
-                            formattedDateHeader: viewModel.formattedDateHeader
-                        )
-                        .onAppear {
-                            if let lastDate = viewModel.groupedMoodEntries(viewModel.filteredMoodEntries).keys.sorted().last {
-                                proxy.scrollTo(lastDate, anchor: .bottom)
+                    let filteredEntries = viewModel.allMoodEntries.filter {
+                        Calendar.current.component(.month, from: $0.date) == viewModel.selectedMonth
+                    }
+
+                    if filteredEntries.isEmpty {
+                        VStack {
+                            Spacer()
+                            Text(AppLocalized.noMoodEntriesText)
+                                .font(.headline)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.white)
+                                .padding()
+                            Spacer()
+                        }
+                    } else {
+                        ScrollViewReader { proxy in
+                            MoodEntryList(
+                                viewModel: viewModel,
+                                groupedEntries: viewModel.groupedMoodEntries(filteredEntries),
+                                formattedDateHeader: viewModel.formattedDateHeader
+                            )
+                            .onAppear {
+                                if let lastDate = viewModel.groupedMoodEntries(filteredEntries).keys.sorted().last {
+                                    proxy.scrollTo(lastDate, anchor: .bottom)
+                                }
                             }
                         }
                     }
