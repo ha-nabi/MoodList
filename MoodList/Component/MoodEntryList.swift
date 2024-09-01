@@ -14,9 +14,6 @@ struct MoodEntryList: View {
     let formattedDateHeader: (Date) -> String
 
     var body: some View {
-        VStack {
-            MoodFilterView(viewModel: viewModel, moodEntries: viewModel.allMoodEntries)
-
             List {
                 ForEach(groupedEntries.keys.sorted(), id: \.self) { date in
                     Section {
@@ -36,6 +33,5 @@ struct MoodEntryList: View {
             }
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
-        }
     }
 }
