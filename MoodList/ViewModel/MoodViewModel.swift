@@ -29,6 +29,8 @@ final class MoodViewModel: ObservableObject {
     @Published var allMoodEntries: [MoodEntry] = [] // 전체 MoodEntry 저장
     @Published var selectedMoodFilter: ImageResource? = nil // 필터링할 무드
     
+    @Published var isLoading: Bool = false
+    
     @Published private(set) var moods: [MoodModel] = [
         MoodModel(feeling: AppLocalized.feelingAngry, mood: .unhappy, color: .cUnhappy),
         MoodModel(feeling: AppLocalized.feelingSad, mood: .sad, color: .cSad),
@@ -129,6 +131,15 @@ final class MoodViewModel: ObservableObject {
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = AppLocalized.timeFormat
         return timeFormatter.string(from: date)
+    }
+    
+    func changeMonth(to newMonth: Int) {
+        isLoading = true
+        selectedMonth = newMonth
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.isLoading = false
+        }
     }
     
     // MARK: - 무드 필터링 관련

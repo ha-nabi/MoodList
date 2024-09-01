@@ -40,10 +40,24 @@ struct MainView: View {
                     selectedMonth: $viewModel.selectedMonth,
                     animationNamespace: animationNamespace
                 )
+                .onChange(of: viewModel.selectedMonth) { newMonth, _ in
+                    viewModel.changeMonth(to: newMonth)
+                }
 
                 Divider()
 
-                if viewModel.filteredMoodEntries.isEmpty {
+                if viewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(1.5)
+                            .padding()
+                        
+                        Spacer()
+                    }
+                } else if viewModel.filteredMoodEntries.isEmpty {
                     VStack {
                         Spacer()
                         Text(AppLocalized.noMoodEntriesText)
