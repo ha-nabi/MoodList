@@ -11,7 +11,7 @@ import SwiftData
 struct MainView: View {
     @StateObject private var viewModel = MoodViewModel()
     @Namespace private var animationNamespace
-    
+
     @Query private var moodEntries: [MoodEntry]
 
     var body: some View {
@@ -22,7 +22,7 @@ struct MainView: View {
                 endPoint: .top
             )
             .ignoresSafeArea()
-            
+
             VStack(spacing: 0) {
                 HStack {
                     Text(viewModel.greetingText)
@@ -32,7 +32,7 @@ struct MainView: View {
                         .lineSpacing(8)
                         .foregroundStyle(.white)
                         .padding()
-                    
+
                     Spacer()
                 }
 
@@ -40,36 +40,64 @@ struct MainView: View {
                     selectedMonth: $viewModel.selectedMonth,
                     animationNamespace: animationNamespace
                 )
+                .onChange(of: viewModel.selectedMonth) { newMonth, _ in
+                    viewModel.changeMonth(to: newMonth)
+                }
 
                 Divider()
-                
-                if viewModel.filteredEntries(moodEntries).isEmpty {
+
+                if viewModel.isLoading {
                     VStack {
                         Spacer()
-                        Text(AppLocalized.noMoodEntriesText)
-                            .font(.headline)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.white)
+                        
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(1)
                             .padding()
+                        
                         Spacer()
                     }
                 } else {
-                    MoodEntryList(
-                        viewModel: viewModel,
-                        groupedEntries: viewModel.groupedEntries(moodEntries),
-                        formattedDateHeader: viewModel.formattedDateHeader
-                    )
+                    let filteredEntries = viewModel.allMoodEntries.filter {
+                        Calendar.current.component(.month, from: $0.date) == viewModel.selectedMonth
+                    }
+
+                    if filteredEntries.isEmpty {
+                        VStack {
+                            Spacer()
+                            Text(AppLocalized.noMoodEntriesText)
+                                .font(.headline)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.white)
+                                .padding()
+                            Spacer()
+                        }
+                    } else {
+                        ScrollViewReader { proxy in
+                            MoodEntryList(
+                                viewModel: viewModel,
+                                groupedEntries: viewModel.groupedMoodEntries(filteredEntries),
+                                formattedDateHeader: viewModel.formattedDateHeader
+                            )
+                            .onAppear {
+                                if let lastDate = viewModel.groupedMoodEntries(filteredEntries).keys.sorted().last {
+                                    proxy.scrollTo(lastDate, anchor: .bottom)
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .zIndex(0)
             .onAppear {
                 viewModel.selectRandomGreeting()
+                viewModel.updateMoodEntries(moodEntries)
             }
-            
+
             if viewModel.showMoodView {
                 Color.black.ignoresSafeArea()
                     .zIndex(1)
-                
+
                 MoodView(
                     viewModel: viewModel,
                     animationNamespace: _animationNamespace

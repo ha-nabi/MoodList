@@ -12,12 +12,14 @@ struct MoodEntryList: View {
     
     let groupedEntries: [Date: [MoodEntry]]
     let formattedDateHeader: (Date) -> String
-
+    
     var body: some View {
         List {
+            // ForEach에서 고유한 식별자를 정확히 설정
             ForEach(groupedEntries.keys.sorted(), id: \.self) { date in
                 Section {
-                    ForEach(groupedEntries[date] ?? []) { entry in
+                    // 각 MoodEntry에 고유한 ID를 사용합니다.
+                    ForEach(groupedEntries[date] ?? [], id: \.id) { entry in
                         MoodEntryRow(viewModel: viewModel, entry: entry)
                     }
                 } header: {
@@ -27,9 +29,10 @@ struct MoodEntryList: View {
                         .fontWeight(.semibold)
                         .padding(.bottom, 4)
                 }
-                .listRowBackground(Color.clear)
             }
+            .listRowBackground(Color.clear)
             .listRowSeparator(.hidden)
+            
         }
         .listStyle(.plain)
         .scrollContentBackground(.hidden)

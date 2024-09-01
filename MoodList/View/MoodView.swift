@@ -28,7 +28,9 @@ struct MoodView: View {
                     VStack(spacing: 64) {
                         HStack(alignment: .firstTextBaseline) {
                             topTitle
+                            
                             Spacer()
+                            
                             Button {
                                 viewModel.closeMoodView()
                             } label: {
