@@ -34,7 +34,7 @@ SwiftUI, MVVM, SwiftData
 ## 🗂 Folder Architecture
 
 <details markdown="1">
-<summary>폴더링을 소개합니다✨</summary>
+<summary>폴더링 ✨</summary>
 
 - 🗂 App
     - MoodListApp.swift
