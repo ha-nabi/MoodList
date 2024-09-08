@@ -1,6 +1,6 @@
 # 무드리스트<img src="https://github.com/user-attachments/assets/ada22e02-6b22-43c1-8fcf-fcb4051f0aec" align=left width=100>
 
-> 하루 동안 느낀 다양한 감정을 기록하고 관리할 수 있는 감정 기록 서비스 🥰
+> 하루 동안 느낀 다양한 감정을 기록하고 관리할 수 있는 감정 기록 서비스🥰
 
 <br />
 
